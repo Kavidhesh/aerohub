@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Aviation Industry Newsletter</title>
+    <style>
+        /* ===== Global Styles ===== */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #FFFFFF;
+            color: #1C1C1E;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+        }
+
+        /* ===== Header ===== */
+        .header {
+            background: linear-gradient(135deg, #005599, #0077CC);
+            color: #FFFFFF;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-top: 8px;
+        }
+
+        /* ===== Intro Section ===== */
+        .intro {
+            padding: 15px;
+            background-color: #F8F9FA;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .intro p {
+            margin: 8px 0;
+        }
+
+        /* ===== Section Dropdown ===== */
+        .section-dropdown {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .section-dropdown label {
+            font-size: 14px;
+            margin-right: 6px;
+            color: #0077CC;
+            font-weight: bold;
+        }
+        .section-dropdown select {
+            padding: 5px;
+            border-radius: 6px;
+            border: 1px solid #D1D1D1;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* ===== Section Styles ===== */
+        .section {
+            background-color: #F8FAFD; /* Subtle tinted background to separate sections */
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            color: #0077CC;
+            margin-top: 1em;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        /* ===== Article Cards ===== */
+        .article {
+            padding: 10px;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            margin-top: 10px;
+            border: 1px solid #D1D1D1;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+        .article strong {
+            color: #0077CC;
+        }
+        .source {
+            font-size: 14px;
+            color: #1C1C1E;
+            font-weight: bold;
+        }
+
+        /* ===== Read More / Read Less / Back to Sections Buttons ===== */
+        .read-more {
+            background: none;
+            color: #0077CC;
+            cursor: pointer;
+            padding: 2px;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 13px;
+            font-weight: normal;
+            font-style: italic;
+            transition: color 0.3s ease;
+            display: inline-block;
+            margin-top: 8px;
+        }
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        .hidden-content {
+            display: none;
+            margin-top: 5px;
+        }
+
+        .read-less {
+            background: none;
+            color: #0077CC;
+            cursor: pointer;
+            padding: 2px;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 13px;
+            font-weight: normal;
+            font-style: italic;
+            transition: color 0.3s ease;
+            margin-top: 10px;
+        }
+        .read-less:hover {
+            text-decoration: underline;
+        }
+
+        .back-to-top {
+            background: none;
+            color: #0077CC;
+            cursor: pointer;
+            padding: 2px;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 13px;
+            font-weight: normal;
+            font-style: italic;
+            transition: color 0.3s ease;
+            margin-left: 10px;
+        }
+        .back-to-top:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== Accessibility: Focus States ===== */
+        .read-more:focus,
+        .read-less:focus,
+        .back-to-top:focus {
+            outline: 2px dashed #0077CC;
+            outline-offset: 2px;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #F2F4F7;
+            color: #1C1C1E;
+            font-size: 13px;
+            margin-top: 20px;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .footer p {
+            margin: 0;
+        }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PDM2HX4JW6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-PDM2HX4JW6');
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- ===== Header ===== -->
+        <div class="header">
+            <h1>AeroPulse by SPI Aviation</h1>
+            <p>Strategic Insights for Aviation Leaders</p>
+        </div>
+
+        <div id="content">
+            <!-- ===== Intro Section ===== -->
+            <div class="intro">
+                <p><strong>Welcome to the first issue of <span style='color:#0077CC;'>AeroPulse by SPI Aviation</span>!</strong></p>
+
+                <!-- Add your personalized message for Dominic below -->
+                <p><strong>Dear Dominic,</strong></p>
+                <p>
+                    We’re delighted to share our first edition of AeroPulse by SPI Aviation, 
+                    curated specifically to keep you updated on industry conferences, 
+                    forward-thinking AI developments, and key updates from GEM. <br> <br>
+                    From leadership philosophy to MRO breakthroughs, each article is 
+                    designed to help you stay informed and inspired as you navigate 
+                    the dynamic aviation landscape.
+                </p><br>
+                <p>Your feedback is valuable—let us know your thoughts as we continue refining AeroPulse!</p>
+            </div>
+
+            <!-- ===== Section Dropdown to Jump to Section ===== -->
+            <div class="section-dropdown">
+                <label for="sectionSelect">Jump to Section:</label>
+                <select id="sectionSelect">
+                    <option value="">-- Select --</option>
+                    <option value="spotlight">Personal Spotlight</option>
+                    <option value="updates">GEM Company Updates</option>
+                    <option value="news">Industry News</option>
+                    <option value="ai">Artificial Intelligence</option>
+                </select>
+            </div>
+
+            <!-- ===== Personal Spotlight ===== -->
+            <div class="section" id="spotlight">
+                <h2>Personal Spotlight</h2>
+                <div class="article" id="conference">
+                    <strong>Conference Highlights</strong>
+                    <p>You recently attended Airline Economics Growth Frontiers in Dublin and Aero Engines Americas in Texas, participating in panel discussions. <br> <br>Also check out other conferences you can attend later this year!</p>
+                    <!-- 'Read More' Button at the top -->
+                    <button class="read-more">Read More</button>
+
+                    <!-- Hidden Content with 'Read Less' at the bottom -->
+                    <div class="hidden-content">
+                                   <h4 style="color: #0077cc; margin-bottom: 10px;">Recent Conferences</h4>
+<ul style="margin-top: 5px; padding-left: 20px; color: #000;">
+    <li>
+        <strong style="color: #000;">Airline Economics Growth Frontiers Dublin (January 12-15, 2025)</strong><br>
+        Over 500 people attended this conference that showcased the latest trends, market insights, and financial developments shaping finance and leasing in the global aviation industry.<br>
+<p class="source">Source: <a href="https://www.growthfrontiersevents.com/conferences/dublin/" target="_blank">Growth Frontiers</a></p>
+        <strong>Suggestion:</strong> Consider sharing your insights from the conferences on LinkedIn to engage with industry peers.
+    </li>
+<br>
+    <li>
+        <strong style="color: #000;">Aero Engines Americas (January 27-29, 2025)</strong><br>
+        The event attracted over 900 senior representatives from airlines, lessors, MROs, OEMs, and suppliers, to discuss trends, challenges, and opportunities in the aero engine market <br>
+You were even part of a panel discussion <strong>"Asset Availability and Downstream Implications"</strong> which took place on 29th Jan. <br>
+<p class="source">Source: <a href="https://conference.aeroenginesusa.com/aea25/Public/SessionDetails.aspx?FromPage=Speakers.aspx&SessionID=1028686&nav=true&Role=U" target="_blank">Aviation Week</a></p>
+        <strong>Suggestion:</strong> Consider sharing your panel discussions insights with your industry peers on LinkedIn.
+    </li>
+</ul>
+
+<h4 style="color: #0077cc; margin-bottom: 10px;">Upcoming MRO Conferences</h4>
+<ul style="margin-top: 5px; padding-left: 20px; color: #000;">
+    <li><strong style="color: #000;">MRO South Asia</strong> (March 26-27, 2025, New Delhi, IN)</li>
+    <li><strong style="color: #000;">Aerospace Tech Week Europe</strong> (April 02-03, 2025, Munich, GE)</li>
+    <li><strong style="color: #000;">MRO Americas</strong> (April 8-10, 2025, Atlanta, GA)</li>
+    <li><strong style="color: #000;">World Aviation Festival</strong> (October 07-09, 2025, Lisbon, PO)</li>
+    <li><strong style="color: #000;">MRO Europe</strong> (October 14-16, 2025, London, UK)</li>
+</ul>
+
+                        <button class="read-less">Read Less</button>
+                        <button class="back-to-top">Back to Sections</button>
+                    </div>
+                </div>
+		<div class="article" id="kalam">
+                    <strong>Leadership Insights: Dr. APJ Abdul Kalam's Vision</strong>
+                    <p>Dr. APJ Abdul Kalam's leadership philosophy offers valuable insights for aviation executives.</p>
+                    <!-- 'Read More' Button at the top -->
+                    <button class="read-more">Read More</button>
+
+                    <!-- Hidden Content with 'Read Less' at the bottom -->
+                    <div class="hidden-content">
+                        <blockquote style="font-style: italic; margin: 15px 0; padding: 10px; border-left: 4px solid #0077cc; background-color: #f0f8ff;">
+  "Great leaders do not command,they inspire. They build teams that are resilient, adaptable, and capable of achieving shared visions."
+</blockquote>
+
+<p>This vision emphasizes:</p>
+
+<ul style="margin-top: 5px; padding-left: 20px; color: #000;">
+  <li>Fostering collaboration and continuous learning</li>
+  <li>Embracing technology and innovation</li>
+  <li>Focusing on safety, efficiency, and sustainability</li>
+  <li>Empowering teams to dream big and take calculated risks</li>
+</ul>
+
+<p>Kalam's inspiring words remind us:</p>
+
+<blockquote style="font-style: italic; margin: 15px 0; padding: 10px; border-left: 4px solid #0077cc; background-color: #f0f8ff;">
+  "Dreams are not what you see when you sleep; dreams are what do not let you sleep."
+</blockquote>
+
+<p>Aviation leaders should aspire to create an industry that is safer, greener, and globally impactful.</p>
+                        <button class="read-less">Read Less</button>
+                        <button class="back-to-top">Back to Sections</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ===== GEM Company Updates ===== -->
+            <div class="section" id="updates">
+                <h2>GEM Company Updates</h2>
+            
+                
+		<div class="article" id="gem-legacy">
+    <strong>Global Engine Maintenance (GEM): A Legacy of Aviation Excellence</strong>
+    <p>
+        In the heart of Doral, Florida, a small team of aviation enthusiasts dared to reimagine engine maintenance, 
+        setting the stage for what would become an industry game-changer.
+    </p>
+    <!-- Add a source link if needed -->
+    <!-- <p class="source">Source: <a href="#" target="_blank">Some Source</a></p> -->
+
+    <button class="read-more">Read More</button>
+    <div class="hidden-content">
+        <h4 style="color: #0077cc; margin-bottom: 5px;">2009-2010: The Humble Beginnings</h4>
+        <ul style="color: #000;">
+            <li>Founded in Doral, Florida by visionary entrepreneurs</li>
+            <li>Specialized in CFM56 and JT8D series engine maintenance</li>
+            <li>Started with a small, passionate team committed to quality</li>
+        </ul>
+
+        <h4 style="color: #0077cc; margin-bottom: 5px;">2010-2020: Strategic Growth Phase</h4>
+        <ul style="color: #000;">
+            <li>Expanded workforce from 10 to over 200 skilled technicians</li>
+            <li>Invested in cutting-edge repair technologies</li>
+            <li>Developed strategic partnerships with major airlines and lessors</li>
+        </ul>
+
+        <h4 style="color: #0077cc; margin-bottom: 5px;">2020-2025: Technological Transformation</h4>
+        <ul style="color: #000;">
+            <li>Implemented advanced digital maintenance solutions</li>
+            <li>Acquired state-of-the-art NDT and plasma repair equipment</li>
+            <li>Diversified service portfolio beyond initial engine focus</li>
+        </ul>
+
+        <h4 style="color: #0077cc; margin-bottom: 5px;">Recent Achievements (2024-2025)</h4>
+                    <p class="source">Source: <a href="https://aviationweek.com/mro/aircraft-propulsion/fast-5-global-engine-maintenance-expands-house-capabilities" target="_blank">Aviation Week</a></p>
+        <ul style="color: #000;">
+            <li>Expanded CFM56 repair capabilities</li>
+            <li>Upgraded balance machines for multiple engine models</li>
+            <li>Planned second shift launch on March 1, 2025</li>
+        </ul>
+
+        <h4 style="color: #0077cc; margin-bottom: 5px;">Leadership Driving Vision</h4>
+        <ul style="color: #000;">
+            <li>Led by Robert Conrad (CEO)</li>
+            <li>Dominic Raja (Vice Chairman and President)</li>
+            <li>Julio Ramirez (VP Sales and Customer Support)</li>
+        </ul>
+
+        <h4 style="color: #0077cc; margin-bottom: 5px;">Future Trajectory</h4>
+        <ul style="color: #000;">
+            <li>Targeting global MRO market expansion</li>
+            <li>Investing in AI-driven predictive maintenance</li>
+            <li>Commitment to sustainable aviation practices</li>
+        </ul>
+
+        <p style="margin-top:10px; color:#000;">
+            <em>GEM: Transforming Aircraft Engine Maintenance, One Innovation at a Time</em>
+        </p>
+
+        <br/>
+        <button class="read-less">Read Less</button>
+        <button class="back-to-top">Back to Sections</button>
+    </div>
+</div>
+<div class="article" id="repair2">
+                    <strong>Recommended Press Release Topics</strong>
+                    <p>AeroPulse's recommendations to keep your customers engaged!</p>
+                    <button class="read-more">Read More</button>
+                    <div class="hidden-content">
+                        <ol style="margin-top: 5px; padding-left: 20px;">
+                            <li>GEM's strategy for 2026 MRO demand peak</li>
+                            <li>Investments in AI and advanced technologies</li>
+                            <li>Expansion plans to meet industry needs</li>
+                            <li>Sustainability initiatives in aviation maintenance</li>
+                        </ol>
+                        <br/>
+                        <button class="read-less">Read Less</button>
+                        <button class="back-to-top">Back to Sections</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Industry News ===== -->
+            <div class="section" id="news">
+                <h2>Industry News</h2>
+                <div class="article" id="mro">
+                    <strong>Investments in Next-Gen Engine MRO</strong>
+                    <p>This article highlights the strategic expansions by engine manufacturers and MRO providers to meet growing demand for next-gen engine repairs. Here's a concise breakdown:</p>
+                    <p class="source">Source: <a href="https://aviationweek.com/mro/services-support/engine-makers-ramp-new-generation-networks" target="_blank">Aviation Week</a></p>
+                    <button class="read-more">Read More</button>
+                    <div class="hidden-content">
+                        <h4 style="color: #0077cc; margin-bottom: 10px;"><strong>CFM International Leap</strong></h4>
+                        <ul>
+                            <li><strong>MRO Growth</strong>: Leap engines to generate $238.5 billion in MRO spending by 2035.</li>
+                            <li><strong>Shop Visits</strong>: Expected to reach 1,725 by 2025 and peak at over 5,000 annually by 2040.</li>
+                            <li><strong>Expansion Regions</strong>: Facilities in Brussels, Hyderabad, Casablanca, and Mexico.</li>
+                        </ul>
+
+                        <h4 style="color: #0077cc; margin-bottom: 10px;"><strong>Pratt & Whitney GTF</strong></h4>
+                        <ul>
+                            <li><strong>Network Expansion</strong>: Capacity growth in Florida (West Palm Beach) and Europe (Zurich, Portugal).</li>
+                            <li><strong>Focus</strong>: Tackling durability challenges with new upgrades.</li>
+                        </ul>
+
+                        <h4 style="color: #0077cc; margin-bottom: 10px;"><strong>Rolls-Royce Trent</strong></h4>
+                        <ul>
+                            <li><strong>Widebody Market</strong>: Supporting Boeing 787 and Airbus A350 fleets.</li>
+                            <li><strong>Expansion Regions</strong>: Investments in Derby (UK), Dahlewitz (Germany), and partnerships in Abu Dhabi.</li>
+                        </ul>
+
+                        <h4 style="color: #0077cc; margin-bottom: 10px;"><strong>Conclusion</strong></h4>
+                        <p>Global MRO networks are evolving to support fleet growth, advanced engines, and durability upgrades across Europe, Asia, North America, and the Middle East.</p>
+
+                        <br/>
+                        <button class="read-less">Read Less</button>
+                        <button class="back-to-top">Back to Sections</button>
+                    </div>
+                </div>
+                <div class="article" id="mro2">
+                    <strong>Podcast Summary: CFM Leap Engine Ramp-Up, Durability, and Spares in 2025</strong>
+                    <p>In this podcast, Aviation Week editors discussed key developments regarding the CFM Leap engine program, focusing on durability improvements, the ramp-up of production, and aftermarket services.</p>
+                    <p class="source">Source: <a href="https://aviationweek.com/podcasts/mro-podcast/podcast-cfm-leap-engine-ramp-durability-spares-2025" target="_blank">Aviation Week</a></p>
+                    <button class="read-more">Read More</button>
+                    <div class="hidden-content">
+                        <h4 style="color: #0077cc; margin-bottom: 5px;">Durability Issues and Solutions:</h4>
+                        <ul>
+                            <li>CFM Leap engines (1A & 1B) faced coating and bearing upgrade issues.</li>
+                            <li>Introduced solutions include:</li>
+                            <ul>
+                                <li>Improved coatings</li>
+                                <li>Reverse bleed systems to reduce coking</li>
+                                <li>New turbine blades for harsher conditions</li>
+                            </ul>
+                        </ul>
+
+                        <h4 style="color: #0077cc; margin-bottom: 5px;">Production and Ramp-Up:</h4>
+                        <ul>
+                            <li>Over 3,500 Leap-powered aircraft in service, fleet expected to double by 2030.</li>
+                            <li>Production increase of 15%-20% this year.</li>
+                            <li>Significant investments in aftermarket network and new maintenance facilities.</li>
+                        </ul>
+
+                        <h4 style="color: #0077cc; margin-bottom: 5px;">Aftermarket and Spares:</h4>
+                        <ul>
+                            <li>High demand for spare engines, resulting in longer lead times and higher leasing rates.</li>
+                            <li>Spare engine rates doubled from previous generations.</li>
+                            <li>Production challenges expected to improve by 2025.</li>
+                        </ul>
+
+                        <h4 style="color: #0077cc; margin-bottom: 5px;">Market Growth and Future Outlook:</h4>
+                        <ul>
+                            <li>LEAP program is maturing, with third-party MRO providers gaining more market share.</li>
+                            <li>MRO activities and shop visits expected to increase as fleet grows.</li>
+                        </ul>
+                        <br/>
+                        <button class="read-less">Read Less</button>
+                        <button class="back-to-top">Back to Sections</button>
+                    </div>
+                </div>
+<!-- Example of a new article in your newsletter format -->
+<div class="article" id="india-mro-growth">
+    <strong>Indian Aircraft MRO Industry Set for Significant Growth by FY26</strong>
+    <p>
+        India's aircraft maintenance, repair, and overhaul (MRO) sector is poised for substantial expansion, 
+        with revenue projected to reach Rs 4,500 crore in fiscal year 2026—a 50% increase from fiscal 2024.
+    </p>
+
+    <button class="read-more">Read More</button>
+    <div class="hidden-content">
+<p>This growth is primarily driven by the expanding fleet size of Indian airlines and recent GST rationalizations.</p>        
+<!-- Key Factors -->
+        <h4 style="color: #0077cc; margin-bottom: 5px;">Key Factors</h4>
+        <ul style="color: #000;">
+            <li>
+                <strong>Fleet Expansion</strong>: Domestic operators' fleets are expected to grow by 20-25% by next year
+            </li>
+            <li>
+                <strong>GST Reduction</strong>: GST on aircraft components and services lowered to 5%, 
+                improving Indian MROs' competitiveness.
+            </li>
+            <li>
+                <strong>Service Diversification</strong>: Indian MROs are expanding offerings, potentially raising market 
+                penetration to 20% by next fiscal
+            </li>
+        </ul>
+
+        <!-- Financial Outlook -->
+        <h4 style="color: #0077cc; margin-bottom: 5px;">Financial Outlook</h4>
+        <ul style="color: #000;">
+            <li>Profitability expected to improve to ~20% by fiscal 2026.</li>
+            <li>Working capital cycle projected to improve by 20-25 days.</li>
+            <li>Interest coverage ratio to rise to 3-3.3 times in next fiscal, up from 2.7 times in FY24 </li>
+        </ul>
+
+        <p style="color: #000;">
+            Challenges remain in ramping up hangar capacities, developing a local ecosystem for aviation spare parts, and 
+            training skilled manpower 
+            Despite these hurdles, the industry's growth trajectory and improving financial metrics signal a strengthening of 
+            credit profiles for MRO players in the medium term
+        </p>
+
+        <br/>
+        <button class="read-less">Read Less</button>
+        <button class="back-to-top">Back to Sections</button>
+    </div>
+</div>
+
+            </div>
+
+            <!-- ===== Artificial Intelligence ===== -->
+            <div class="section" id="ai">
+                <h2>Artificial Intelligence</h2>
+                <div class="article" id="ai-use-cases">
+    <strong>MRO Industry Expands Potential AI Use Cases</strong>
+    <p>
+        This article highlights the growing applications of artificial intelligence (AI) in the MRO sector of aviation.
+    </p>
+    <p class="source">
+        Source: 
+        <a href="https://aviationweek.com/mro/emerging-technologies/mro-industry-expands-potential-ai-use-cases" target="_blank">
+            Aviation Week
+        </a>
+    </p>
+    
+    <button class="read-more">Read More</button>
+    
+    <div class="hidden-content">
+        
+        <!-- Key Points Section -->
+        <h4 style="color: #0077cc; margin-bottom: 5px;">Key Takeaways</h4>
+        <ul style="color: #000;">
+            <li>
+                AI applications are expanding beyond <strong>predictive maintenance</strong> to 
+                <em>simplify maintenance processes</em> themselves 
+
+            </li>
+            <li>
+                <strong>GE Aerospace</strong> has developed AI-powered tools for engine inspections, improving 
+                speed, accuracy, and consistency 
+            </li>
+            <li>
+                <strong>Aiir Innovations</strong> offers an AI tool for automated aeroengine borescope inspections, 
+                analyzing video 75% faster than manual reviews 
+            </li>
+            <li>
+                Generative AI is being used to:
+                <ul style="color: #000; margin-top: 5px;">
+                    <li>
+                        Simplify access to maintenance records (GE Aerospace, Accenture, and Microsoft's GenAI Assistant) 
+                    </li>
+                    <li>
+                        Provide technician assistance (AFI KLM E&M, Amygda, LexX Technologies, and Veryon)
+                    </li>
+                    <li>
+                        Improve parts traceability and authenticity (GA Telesis + Alitheon's FeaturePrint)
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>AFI KLM E&M</strong> has launched over 80 generative AI projects, including tools like <em>Charlie</em> 
+                (for parts/documentation searches) and <em>Voice to Admin</em> (natural language processing) 
+            </li>
+            <li>
+                AI is also being applied to enhance customer service, recruitment, and sustainability efforts 
+            </li>
+        </ul>
+
+        <!-- Conclusion -->
+        <h4 style="color: #0077cc; margin-bottom: 5px;">Conclusion</h4>
+        <p style="color: #000;">
+            These advancements demonstrate the MRO sector's commitment to leveraging AI for improved efficiency, 
+            accuracy, and safety in aircraft maintenance 
+        </p>
+        
+        <br/>
+        <button class="read-less">Read Less</button>
+        <button class="back-to-top">Back to Sections</button>
+    </div>
+</div>
+<div class="article" id="aviation-2025">
+    <!-- Main Title & Short Synopsis -->
+    <strong>Aviation Technology in 2025: A Year of Transformation and Challenges</strong>
+    <p>This article details the significant shifts in aviation technology for 2025, driven by AI innovation, eVTOL developments, and the industry's ongoing recovery efforts.</p>
+    <p class="source">
+        Source: 
+        <a href="https://www.airport-technology.com/features/what-does-2025-have-in-store/?cf-view" target="_blank">
+            Airport Technology
+        </a>
+    </p>
+
+    <!-- Read More Button -->
+    <button class="read-more">Read More</button>
+
+    <!-- Hidden Content -->
+    <div class="hidden-content">
+
+        <!-- Key Highlights -->
+        <h4 style="color: #0077cc; margin-bottom: 5px;">Key Highlights</h4>
+        <p style="color: #000;">
+            Aviation technology in 2025 is poised for significant shifts, driven by AI innovation, 
+            eVTOL developments, and industry recovery efforts.
+        </p>
+
+        <!-- Industry Challenges -->
+        <h4 style="color: #0077cc; margin-bottom: 5px;">Industry Challenges</h4>
+        <ul style="color: #000;">
+            <li>Aircraft delivery shortfalls continue from 2024</li>
+            <li>Boeing missed 393 deliveries (54% of intended production)</li>
+            <li>Capacity growth expected to be modest at 3-4%</li>
+        </ul>
+
+        <!-- Technological Innovations -->
+        <h4 style="color: #0077cc; margin-bottom: 5px;">Technological Innovations</h4>
+
+        <!-- AI Impact -->
+        <h4 style="color: #0077cc; margin-bottom: 5px; font-size: 16px;">Artificial Intelligence (AI) Impact</h4>
+        <p style="color: #000;">AI is set to revolutionize multiple aviation sectors:</p>
+
+        <p style="color: #0077cc; font-weight: bold; margin-bottom: 5px;">MRO (Maintenance, Repair, and Overhaul) Advancements:</p>
+        <ul style="color: #000; margin-top: 5px;">
+            <li>Virtual training for junior technicians</li>
+            <li>AI-enabled maintenance planning</li>
+            <li>Improved technician efficiency</li>
+            <li>Knowledge transfer through AI copilots</li>
+        </ul>
+
+        <p style="color: #0077cc; font-weight: bold; margin-bottom: 5px;">Airline Experience Transformation:</p>
+        <ul style="color: #000;">
+            <li>Generative AI to reduce travel stress</li>
+            <li>Digital-first airline platforms</li>
+            <li>Potential for airlines to become digital retailers</li>
+        </ul>
+
+        <!-- eVTOL Developments -->
+        <h4 style="color: #0077cc; margin-bottom: 5px;">eVTOL (Electric Vertical Takeoff and Landing) Developments</h4>
+        <ul style="color: #000;">
+            <li>Potential commercial launch in 2025</li>
+            <li>Likely first premium service in Los Angeles</li>
+            <li>Archer Aviation expanding in Abu Dhabi</li>
+            <li>Continued testing and network development</li>
+        </ul>
+
+        <!-- Future Outlook -->
+        <h4 style="color: #0077cc; margin-bottom: 5px;">Future Outlook</h4>
+        <p style="color: #000;">
+            The aviation sector in 2025 is navigating complex challenges while embracing technological 
+            innovations that promise to reshape the industry's future.
+        </p>
+
+        <!-- End Buttons -->
+        <br/>
+        <button class="read-less">Read Less</button>
+        <button class="back-to-top">Back to Sections</button>
+    </div>
+</div>
+<!-- Example of an article block with "Read More" toggle, consistent with your newsletter's style -->
+<div class="article" id="china-tech-leap">
+    <strong>DeepSeek AI and Sixth-Gen Jets: China's Technological Leap Forward</strong>
+    <p>
+        China has made significant strides in artificial intelligence and military technology, 
+        challenging Western dominance in innovation and defense. Two recent developments highlight 
+        this progress.
+    </p>
+
+    <button class="read-more">Read More</button>
+    <div class="hidden-content">
+        <!-- DeepSeek AI -->
+        <h4 style="color: #0077cc; margin-bottom: 5px;">1. DeepSeek AI: A Cost-Effective Breakthrough</h4>
+        <p style="color: #000;">
+            DeepSeek, a Chinese AI chatbot, has disrupted the AI industry with its impressive performance 
+            and cost-efficiency:
+        </p>
+        <ul style="color: #000;">
+            <li>Developed with just $6 million, compared to billions invested by Western competitors</li>
+            <li>Rivals top AI models in performance</li>
+            <li>Became the most downloaded app on Apple's US App Store</li>
+            <li>Subscription cost of $0.50 per month, versus ChatGPT's $20</li>
+        </ul>
+        <p style="color: #000;">
+            The impact has been significant:
+        </p>
+        <ul style="color: #000;">
+            <li>Global AI and semiconductor stocks plummeted</li>
+            <li>Nvidia lost nearly $600 billion in market value in one day</li>
+        </ul>
+
+        <!-- Sixth-Generation Fighter Jets -->
+        <h4 style="color: #0077cc; margin-bottom: 5px;">2. Sixth-Generation Fighter Jets: Redefining Aerial Warfare</h4>
+        <p style="color: #000;">
+            China unveiled two sixth-generation stealth fighter jets in December 2024, featuring:
+        </p>
+        <ul style="color: #000;">
+            <li>Advanced AI-driven automation</li>
+            <li>Extended range</li>
+            <li>Greater payload capacities</li>
+        </ul>
+        <p style="color: #000;">
+            This puts China years ahead of competitors, with the US not expecting operational 
+            sixth-generation fighters until the 2030s.
+        </p>
+
+        <!-- Global Reactions -->
+        <h4 style="color: #0077cc; margin-bottom: 5px;">Global Reactions and Implications</h4>
+        <ul style="color: #000;">
+            <li>US President Donald Trump called it a "wake-up call," pledging $500 billion to the 'Stargate' AI initiative</li>
+            <li>China's R&D spending reached 3.6 trillion yuan (~$496 billion) in 2024, up 8.3% from previous year</li>
+            <li>R&D investment intensity in China has grown steadily, reaching 2.58% in 2023</li>
+        </ul>
+        <p style="color: #000;">
+            These advancements have reignited the global arms race and tech innovation sprint, 
+            potentially reshaping competitive dynamics and global power structures.
+        </p>
+
+        <br/>
+        <button class="read-less">Read Less</button>
+        <button class="back-to-top">Back to Sections</button>
+    </div>
+</div>
+
+            </div>
+        </div>
+
+        <!-- ===== Footer ===== -->
+        <div class="footer">
+            <p>&copy; AeroPulse by SPI Aviation | All Rights Reserved</p>
+        </div>
+    </div>
+
+    <script>
+        // Grab all articles
+        const articles = document.querySelectorAll(".article");
+
+        articles.forEach(article => {
+            const readMoreBtn = article.querySelector(".read-more");
+            const hiddenContent = article.querySelector(".hidden-content");
+            const readLessBtn = article.querySelector(".read-less");
+            const backToTopBtn = article.querySelector(".back-to-top");
+
+            // Show hidden content, hide 'Read More' when user clicks
+            readMoreBtn.addEventListener("click", () => {
+                hiddenContent.style.display = "block";
+                readMoreBtn.style.display = "none";
+            });
+
+            // Hide hidden content, show 'Read More' when user clicks 'Read Less'
+            readLessBtn.addEventListener("click", () => {
+                hiddenContent.style.display = "none";
+                readMoreBtn.style.display = "inline-block";
+            });
+
+            // When user clicks 'Back to Sections', also hide the hidden content
+            backToTopBtn.addEventListener("click", () => {
+                // Make sure we revert to collapsed state
+                hiddenContent.style.display = "none";
+                readMoreBtn.style.display = "inline-block";
+
+                // Scroll to the top dropdown
+                document.querySelector(".section-dropdown").scrollIntoView({ behavior: "smooth" });
+            });
+        });
+
+        // --- Section Dropdown Logic --- //
+        const sectionSelect = document.getElementById("sectionSelect");
+        sectionSelect.addEventListener("change", () => {
+            const sectionId = sectionSelect.value;
+            if (sectionId) {
+                document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
+            }
+        });
+    </script>
+</body>
+</html>
